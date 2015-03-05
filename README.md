@@ -1,9 +1,7 @@
 # psu-std-pic
 
 ## How to use:  
-
-?code=5610110001&len=100  
-
+https://rawgit.com/ibotdotout/psu-std-pic/master/std_pic.html?code=< your student id >&len=< your number of student>  
 Edit code to student id and len to number of next student.  
 
 
