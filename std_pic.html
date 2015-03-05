@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+/*
+Std Code - YY 1 FF DT CCC
+
+YY - Year ex. 53
+FF - Fac ex. 01
+D - Degree: bachelor 1 , master 2, phd 3
+T - Type: normaly 1
+CCC - student number ex. 236
+
+PSU Fac:
+01 - Eng
+02 - Sci
+03 - Med
+04 - Nuruse
+05 - Mgt
+06 - NR
+07 - Rx
+08 - Dent
+09 - Env Mgt (No bacherlor)
+10 - Argo
+11 - LA
+12 - Econ
+13 - Law
+14 - Thai Med
+15 - Med Tech
+16 - PSU-IC
+*/
+
+function imgTagHtml(url){
+  imgtag  = "<img src=\"" + url + "\" width=\"170\" height=\"210\">"
+  return imgtag
+}
+
+function urlStdPic(stdcode){
+  baseurl = "http://regist2010.cc.psu.ac.th/stud_pics/"
+  yearcode = stdcode.substr(0, 2)
+  picurl =  baseurl + yearcode + '/' + stdcode + ".jpg"
+  return picurl
+}
+
+function nextStdID(stdcode, n){
+  pad = "000"
+  code = stdcode.substr(7,3)
+  base = stdcode.substr(0,7)
+  nextcode = (pad + (parseInt(code) + n)).slice(-pad.length)
+  nextstd = base + nextcode
+  return nextstd
+}
+
+function displayStdPic(stdcode, len){
+  for (i = 0 ; i < len ; i++){
+    code = nextStdID(stdcode, i)
+    picurl = urlStdPic(code)
+    imgtag  = imgTagHtml(picurl)
+    document.write(imgtag)
+  }
+}
+
+function getParameterByName(name) {
+    /* http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript */
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+stdcode = getParameterByName("code");
+len = getParameterByName("len");
+displayStdPic(stdcode, len);
+
+</script>
+
+</body>
+</html>
